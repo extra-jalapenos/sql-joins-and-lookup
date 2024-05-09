@@ -10,6 +10,7 @@ For this homework session, you will work in Google BigQuery with the data set ca
 4. Now modify the query to show only the customers that made more than ten orders. How many are they (you can count the number of rows)?
 5. [Not a real question] By the way, what’s going on with the Smith family from the last query? 🤔
 6. Your boss wants to know if there is a relationship between the status of an order and the age bracket of a user. Write a query that returns a pivot table showing the order status by row and four age brackets as separate columns like in the screenshot below:
+![alt text](image.png)
 
 ## Advanced Exercise 
 
