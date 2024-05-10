@@ -1,0 +1,102 @@
+erDiagram
+    distribution_center {
+        int id PK
+        string name
+        float latitude
+        float longitude
+    }
+
+    events {
+        int id PK
+        int user_id FK
+        int sequence_number
+        string  session_id
+        datetime  created_at
+        string  ip_address
+        string  city
+        string  state
+        string  postal_code
+        string  browser
+        string  traffic_source
+        string  uri
+        string  event_type
+    }
+
+    inventory_items {
+        int id  PK
+        int product_id  FK
+        datetime created_at
+        datetime updated_at
+        float   cost
+        string product_category
+        string product_name
+        string product_brand
+        float   product_retail_price
+        string  product_department
+        string  SKU
+        int product_distribution_center_id
+    }
+
+    order_items {
+        int id  PK
+        int order_id    FK
+        int user_id     FK
+        int product_id  FK
+        int inventory_item_id   FK
+        string  status
+        datetime    created_at
+        datetime    shipped_at
+        datetime    delivered_at
+        datetime    returned_at
+        float   sale_price
+    }
+
+    orders {
+        int order_id    PK
+        int user_id     FK
+        string  status
+        string  gender
+        datetime    created_at
+        datetime    returned_at
+        datetime    shipped_at
+        datetime    delivered_at
+        int num_of_item
+    }
+
+    products {
+        int ip_address  PK
+        float   cost
+        string  category
+        string  name
+        string  brand
+        float   retail_price
+        string  department
+        string  SKU
+        int distribution_center_id FK
+    }
+
+    users {
+        int id  PK
+        string  first_name
+        string  last_name
+        string  email
+        int age
+        string  gender
+        string  state
+        string  street_address
+        string  postal_code
+        string  city
+        string  country
+        float   latitude
+        float   longitude
+        string  traffic_source
+        datetime    created_at
+    }
+
+    products ||--o| inventory_items : has
+    users ||--o{ orders : places
+    orders ||--|{ order_items : contains
+    order_items }o..|| users : orders
+    order_items ||--|| inventory_items : exist
+    users ||--o{ events : triggers
+    distribution_center ||--o{ inventory_items : stores
