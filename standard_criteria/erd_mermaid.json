@@ -64,7 +64,7 @@ erDiagram
     }
 
     products {
-        int ip_address  PK
+        int id  PK
         float   cost
         string  category
         string  name
@@ -100,3 +100,4 @@ erDiagram
     order_items ||--|| inventory_items : exist
     users ||--o{ events : triggers
     distribution_center ||--o{ inventory_items : stores
+    products ||--o{ order_items : ordered
